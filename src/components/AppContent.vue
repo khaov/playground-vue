@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { RouterView } from 'vue-router'
-import GuideList from '../components/GuideList.vue'
+import HelloWorld from './HelloWorld.vue'
 </script>
 
 <template>
@@ -9,7 +8,7 @@ import GuideList from '../components/GuideList.vue'
       <GuideList />
     </aside>
     <main>
-      <RouterView />
+      <HelloWorld msg="You did it!" />
     </main>
   </div>
 </template>
