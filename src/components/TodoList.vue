@@ -1,11 +1,19 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 
 const todos = ref([
   { id: '1', title: 'Задача 1', completed: true },
   { id: '2', title: 'Задача 2', completed: false },
   { id: '3', title: 'Задача 3', completed: true }
 ])
+
+const completedTasks = computed(() => {
+  return todos.value.filter((todo) => todo.completed).length
+})
+
+const unfinishedTasks = computed(() => {
+  return todos.value.length - completedTasks.value
+})
 
 const inputTask = ref('')
 
@@ -25,6 +33,8 @@ function addTask() {
 
 <template>
   <h1>Список задач</h1>
+  <p>Выполненные задачи: {{ completedTasks }}</p>
+  <p>Невыполненные задачи: {{ unfinishedTasks }}</p>
 
   <ul>
     <li v-for="todo in todos" :key="todo.id">
@@ -35,8 +45,8 @@ function addTask() {
 
   <h2>Добавить задачу</h2>
 
-  <form>
+  <form @submit.prevent="addTask">
     <input v-model="inputTask" type="text" placeholder="Сформулируйте задачу" />
-    <button @click="addTask" type="button">Добавить</button>
+    <button type="submit">Добавить</button>
   </form>
 </template>
