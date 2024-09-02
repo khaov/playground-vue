@@ -42,6 +42,10 @@ function addTask() {
 
   inputTask.value = ''
 }
+
+function removeTask(todoToRemove: { id: string }) {
+  todos.value = todos.value.filter((todo) => todo.id !== todoToRemove.id)
+}
 </script>
 
 <template>
@@ -65,6 +69,7 @@ function addTask() {
     <li v-for="todo in filteredTodos" :key="todo.id">
       <input :id="todo.id" type="checkbox" v-model="todo.completed" />
       <label :for="todo.id">{{ todo.title }}</label>
+      <button @click="removeTask(todo)">Удалить</button>
     </li>
   </ul>
 
