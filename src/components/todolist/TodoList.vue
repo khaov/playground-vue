@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 
+import TodoItem from '@/components/todolist/TodoItem.vue'
 import TodoFilter from '@/components/todolist/TodoFilter.vue'
 
 const todos = ref([
@@ -27,8 +28,15 @@ function addTask() {
   inputTask.value = ''
 }
 
-function removeTask(todoToRemove: { id: string }) {
-  todos.value = todos.value.filter((todo) => todo.id !== todoToRemove.id)
+const toggleTodo = (id: string, completed: boolean) => {
+  const todo = todos.value.find((t) => t.id === id)
+  if (todo) {
+    todo.completed = completed
+  }
+}
+
+const removeTodo = (id: string) => {
+  todos.value = todos.value.filter((todo) => todo.id !== id)
 }
 </script>
 
@@ -39,9 +47,7 @@ function removeTask(todoToRemove: { id: string }) {
 
   <ul>
     <li v-for="todo in filteredTodos" :key="todo.id">
-      <input :id="todo.id" type="checkbox" v-model="todo.completed" />
-      <label :for="todo.id">{{ todo.title }}</label>
-      <button @click="removeTask(todo)">Удалить</button>
+      <TodoItem :todo="todo" @toggle="toggleTodo" @remove="removeTodo" />
     </li>
   </ul>
 
