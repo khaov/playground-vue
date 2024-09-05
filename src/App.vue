@@ -1,11 +1,15 @@
 <script setup lang="ts">
-import AppHeader from './components/AppHeader.vue'
-import AppContent from './components/AppContent.vue'
-import AppFooter from './components/AppFooter.vue'
+import AppHeader from '@/components/layout/AppHeader.vue'
+import AppContent from '@/components/layout/AppContent.vue'
+import AppFooter from '@/components/layout/AppFooter.vue'
+
+import TodoList from '@/components/todolist/TodoList.vue'
 </script>
 
 <template>
   <AppHeader />
-  <AppContent />
+  <AppContent>
+    <TodoList />
+  </AppContent>
   <AppFooter />
 </template>
