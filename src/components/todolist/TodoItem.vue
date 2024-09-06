@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
+import TodoInput from '@/components/todolist/TodoInput.vue'
+
 interface TodoItem {
   id: string
   title: string
@@ -27,7 +29,15 @@ const removeTodo = () => {
 </script>
 
 <template>
-  <input :id="props.todo.id" type="checkbox" :checked="todo.completed" @change="toggleTodo" />
-  <label :for="props.todo.id">{{ props.todo.title }}</label>
+  <!-- <input :id="props.todo.id"  />
+  -->
+
+  <TodoInput
+    :id="props.todo.id"
+    :label="props.todo.title"
+    type="checkbox"
+    :checked="todo.completed"
+    @change="toggleTodo"
+  />
   <button @click="removeTodo">Удалить</button>
 </template>

@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 
-import TodoItem from '@/components/todolist/TodoItem.vue'
+import TodoInput from '@/components/todolist/TodoInput.vue'
 import TodoFilter from '@/components/todolist/TodoFilter.vue'
+import TodoItem from '@/components/todolist/TodoItem.vue'
 
 const todos = ref([
   { id: '1', title: 'Задача 1', completed: true },
@@ -54,7 +55,8 @@ const removeTodo = (id: string) => {
   <h2>Добавить задачу</h2>
 
   <form @submit.prevent="addTask">
-    <input v-model="inputTask" type="text" placeholder="Сформулируйте задачу" />
+    <TodoInput v-model="inputTask" type="text" placeholder="Сформулируйте задачу" />
+
     <button type="submit">Добавить</button>
   </form>
 </template>
