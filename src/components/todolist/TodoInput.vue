@@ -4,13 +4,12 @@ interface TodoInput {
   label?: string
 }
 
-const props = defineProps<TodoInput>()
+defineProps<TodoInput>()
 const model = defineModel({ required: true })
 defineOptions({ inheritAttrs: false })
 </script>
 
 <template>
   <input :id="id" v-model="model" v-bind="$attrs" />
-
-  <label :for="id">{{ label }}</label>
+  <label :for="id" v-html="label"></label>
 </template>

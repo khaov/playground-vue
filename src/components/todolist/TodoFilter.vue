@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { ref, computed, watch } from 'vue'
 
+import TodoInput from '@/components/todolist/TodoInput.vue'
+
 const props = defineProps<{
   todos: { id: string; title: string; completed: boolean }[]
 }>()
@@ -42,19 +44,28 @@ watch(
 
 <template>
   <div>
-    <input type="radio" id="all" value="all" v-model="filter" />
-    <label for="all"
-      >Все <sup>{{ allTasks }}</sup></label
-    >
+    <TodoInput
+      :id="`all`"
+      :label="`Все <sup>` + allTasks + `</sup>`"
+      type="radio"
+      value="all"
+      v-model="filter"
+    />
 
-    <input type="radio" id="completed" value="completed" v-model="filter" />
-    <label for="completed"
-      >Завершенные <sup>{{ completedTasks }}</sup></label
-    >
+    <TodoInput
+      :id="`completed`"
+      :label="`Завершенные <sup>` + completedTasks + `</sup>`"
+      type="radio"
+      value="completed"
+      v-model="filter"
+    />
 
-    <input type="radio" id="unfinished" value="unfinished" v-model="filter" />
-    <label for="unfinished"
-      >Невыполненные <sup>{{ unfinishedTasks }}</sup></label
-    >
+    <TodoInput
+      :id="`unfinished`"
+      :label="`Невыполненные <sup>` + unfinishedTasks + `</sup>`"
+      type="radio"
+      value="unfinished"
+      v-model="filter"
+    />
   </div>
 </template>
