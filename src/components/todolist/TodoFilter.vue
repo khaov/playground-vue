@@ -1,25 +1,14 @@
 <script setup lang="ts">
-import { ref, computed, watch } from 'vue'
+import type { Todo } from '@/types'
+import { computed } from 'vue'
 
 import TodoInput from '@/components/todolist/TodoInput.vue'
 
 const props = defineProps<{
-  todos: { id: string; title: string; completed: boolean }[]
+  todos: Todo[]
 }>()
 
-const emit = defineEmits(['update:filteredTodos'])
-
-const filter = ref('all')
-
-const filteredTodos = computed(() => {
-  if (filter.value === 'all') {
-    return props.todos
-  } else if (filter.value === 'completed') {
-    return props.todos.filter((todo) => todo.completed)
-  } else {
-    return props.todos.filter((todo) => !todo.completed)
-  }
-})
+const model = defineModel({ required: true })
 
 const allTasks = computed(() => {
   return props.todos.length
@@ -32,14 +21,6 @@ const completedTasks = computed(() => {
 const unfinishedTasks = computed(() => {
   return allTasks.value - completedTasks.value
 })
-
-watch(
-  filteredTodos,
-  (newFilteredTodos) => {
-    emit('update:filteredTodos', newFilteredTodos)
-  },
-  { immediate: true }
-)
 </script>
 
 <template>
@@ -49,7 +30,7 @@ watch(
       :label="`Все <sup>` + allTasks + `</sup>`"
       type="radio"
       value="all"
-      v-model="filter"
+      v-model="model"
     />
 
     <TodoInput
@@ -57,7 +38,7 @@ watch(
       :label="`Завершенные <sup>` + completedTasks + `</sup>`"
       type="radio"
       value="completed"
-      v-model="filter"
+      v-model="model"
     />
 
     <TodoInput
@@ -65,7 +46,7 @@ watch(
       :label="`Невыполненные <sup>` + unfinishedTasks + `</sup>`"
       type="radio"
       value="unfinished"
-      v-model="filter"
+      v-model="model"
     />
   </div>
 </template>
