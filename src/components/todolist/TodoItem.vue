@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { ref } from 'vue'
 
 import TodoInput from '@/components/todolist/TodoInput.vue'
 
@@ -12,6 +12,8 @@ interface TodoItem {
 const props = defineProps<{
   todo: TodoItem
 }>()
+
+const completed = ref(props.todo.completed)
 
 const emit = defineEmits<{
   (e: 'toggle', id: string, completed: boolean): void
@@ -33,7 +35,7 @@ const removeTodo = () => {
     :id="props.todo.id"
     :label="props.todo.title"
     type="checkbox"
-    v-model="todo.completed"
+    v-model="completed"
     @change="toggleTodo"
   />
   <button @click="removeTodo">Удалить</button>
