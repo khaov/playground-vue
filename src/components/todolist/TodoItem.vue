@@ -31,12 +31,14 @@ const removeTodo = () => {
 </script>
 
 <template>
-  <TodoInput
-    :id="props.todo.id"
-    :label="props.todo.label"
-    type="checkbox"
-    v-model="completed"
-    @change="toggleTodo"
-  />
-  <button @click="removeTodo" data-test="todo-remove">Удалить</button>
+  <div data-test="todo-item">
+    <TodoInput
+      :id="props.todo.id"
+      :label="props.todo.label"
+      type="checkbox"
+      v-model="completed"
+      @change="toggleTodo"
+    />
+    <button @click="removeTodo" data-test="todo-item-remove">Удалить</button>
+  </div>
 </template>

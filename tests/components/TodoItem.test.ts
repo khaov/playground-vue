@@ -15,8 +15,9 @@ describe('TodoItem', () => {
       }
     })
 
-    const field = wrapper.find('[data-test="todo-field"]')
-    const remove = wrapper.find('[data-test="todo-remove"]')
+    const item = wrapper.find('[data-test="todo-item"]')
+    const field = item.find('[data-test="todo-field"]')
+    const remove = item.find('[data-test="todo-item-remove"]')
 
     expect(field.exists()).toBe(true)
     expect(remove.exists()).toBe(true)
