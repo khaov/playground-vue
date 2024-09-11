@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@vitest/utils": "^2.0.5",
+    "@vue/test-utils": "^2.4.6",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0"
   },
@@ -29,6 +30,7 @@
     "@vue/tsconfig": "^0.5.1",
     "eslint": "^8.57.0",
     "eslint-plugin-vue": "^9.23.0",
+    "jsdom": "^25.0.0",
     "npm-run-all2": "^6.1.2",
     "prettier": "^3.2.5",
     "typescript": "~5.4.0",
