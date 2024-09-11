@@ -11,7 +11,7 @@ defineOptions({ inheritAttrs: false })
 
 <template>
   <div data-test="todo-field">
-    <input :id="id" v-model="model" v-bind="$attrs" data-test="todo-input" />
-    <label :for="id" v-html="label" data-test="todo-label"></label>
+    <input :id="id" v-model="model" v-bind="$attrs" data-test="todo-field-input" />
+    <label :for="id" v-html="label" data-test="todo-field-label"></label>
   </div>
 </template>

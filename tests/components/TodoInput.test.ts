@@ -13,8 +13,9 @@ describe('TodoInput', () => {
       }
     })
 
-    const input = wrapper.find('[data-test="todo-input"]')
-    const label = wrapper.find('[data-test="todo-label"]')
+    const field = wrapper.find('[data-test="todo-field"]')
+    const input = field.find('[data-test="todo-field-input"]')
+    const label = field.find('[data-test="todo-field-label"]')
 
     expect(input.attributes().id).toBe('1')
     expect(label.text()).toBe('Lorem ipsum')
