@@ -10,6 +10,8 @@ defineOptions({ inheritAttrs: false })
 </script>
 
 <template>
-  <input :id="id" v-model="model" v-bind="$attrs" data-test="todo-input" />
-  <label :for="id" v-html="label" data-test="todo-label"></label>
+  <div data-test="todo-field">
+    <input :id="id" v-model="model" v-bind="$attrs" data-test="todo-input" />
+    <label :for="id" v-html="label" data-test="todo-label"></label>
+  </div>
 </template>
