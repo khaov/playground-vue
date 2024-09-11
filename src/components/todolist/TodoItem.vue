@@ -1,17 +1,19 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { ref } from 'vue'
 
 import TodoInput from '@/components/todolist/TodoInput.vue'
 
 interface TodoItem {
   id: string
-  title: string
+  label: string
   completed: boolean
 }
 
 const props = defineProps<{
   todo: TodoItem
 }>()
+
+const completed = ref(props.todo.completed)
 
 const emit = defineEmits<{
   (e: 'toggle', id: string, completed: boolean): void
@@ -29,12 +31,14 @@ const removeTodo = () => {
 </script>
 
 <template>
-  <TodoInput
-    :id="props.todo.id"
-    :label="props.todo.title"
-    type="checkbox"
-    v-model="todo.completed"
-    @change="toggleTodo"
-  />
-  <button @click="removeTodo">Удалить</button>
+  <div data-test="todo-item">
+    <TodoInput
+      :id="props.todo.id"
+      :label="props.todo.label"
+      type="checkbox"
+      v-model="completed"
+      @change="toggleTodo"
+    />
+    <button @click="removeTodo" data-test="todo-item-remove">Удалить</button>
+  </div>
 </template>

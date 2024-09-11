@@ -7,9 +7,9 @@ import TodoFilter from '@/components/todolist/TodoFilter.vue'
 import TodoItem from '@/components/todolist/TodoItem.vue'
 
 const todos = ref<Todo[]>([
-  { id: '1', title: 'Задача 1', completed: true },
-  { id: '2', title: 'Задача 2', completed: false },
-  { id: '3', title: 'Задача 3', completed: true }
+  { id: '1', label: 'Задача 1', completed: true },
+  { id: '2', label: 'Задача 2', completed: false },
+  { id: '3', label: 'Задача 3', completed: true }
 ])
 
 const filterTodo = ref('all')
@@ -39,7 +39,7 @@ function addTodo() {
   if (inputTodo.value.length) {
     todos.value.push({
       id: taskID,
-      title: inputTodo.value,
+      label: inputTodo.value,
       completed: false
     })
   }
