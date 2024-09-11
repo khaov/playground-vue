@@ -5,7 +5,7 @@ import TodoInput from '@/components/todolist/TodoInput.vue'
 
 interface TodoItem {
   id: string
-  title: string
+  label: string
   completed: boolean
 }
 
@@ -33,10 +33,10 @@ const removeTodo = () => {
 <template>
   <TodoInput
     :id="props.todo.id"
-    :label="props.todo.title"
+    :label="props.todo.label"
     type="checkbox"
     v-model="completed"
     @change="toggleTodo"
   />
-  <button @click="removeTodo">Удалить</button>
+  <button @click="removeTodo" data-test="todo-remove">Удалить</button>
 </template>
