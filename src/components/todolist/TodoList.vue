@@ -67,6 +67,6 @@ const removeTodo = (id: string) => {
 
   <form @submit.prevent="addTodo" data-test="todo-form">
     <TodoInput v-model="inputTodo" type="text" placeholder="Сформулируйте задачу" />
-    <button type="submit" data-test="todo-form-remove">Добавить</button>
+    <button type="submit" data-test="todo-form-add">Добавить</button>
   </form>
 </template>
