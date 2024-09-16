@@ -24,7 +24,7 @@ const unfinishedTasks = computed(() => {
 </script>
 
 <template>
-  <div>
+  <div data-test="todo-filter">
     <TodoInput
       :id="`all`"
       :label="`Все <sup>` + allTasks + `</sup>`"
