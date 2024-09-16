@@ -2,7 +2,7 @@ import { mount } from '@vue/test-utils'
 import { describe, it, expect } from 'vitest'
 
 import TodoList from '@/components/todolist/TodoList.vue'
-import TodoItem from '@/components/todolist/TodoItem.vue'
+import TodoItem from '@/components/todolist/TodoFilter.vue'
 
 describe('TodoList', () => {
   it('renders correct TodoList', () => {
@@ -32,17 +32,45 @@ describe('TodoList', () => {
   })
 
   it('removes TodoItem', async () => {
-    const wrapper = mount(TodoList)
+    const todoList = mount(TodoList)
 
-    const currentItems = wrapper.findAll('[data-test="todo-item"]')
+    const currentItems = todoList.findAll('[data-test="todo-item"]')
     expect(currentItems.length).toBe(3)
 
     const item = currentItems[0]
     const button = item.find('[data-test="todo-item-remove"]')
     await button.trigger('click')
 
-    const updatedItems = wrapper.findAll('[data-test="todo-item"]')
+    const updatedItems = todoList.findAll('[data-test="todo-item"]')
 
     expect(updatedItems.length).toBe(2)
+  })
+
+  it('filters todos correctly', async () => {
+    const todoList = mount(TodoList)
+
+    const allTodos = todoList.findAll('[data-test="todo-item"]').length
+    const completedTodos = todoList.findAll('[type="checkbox"]:checked').length
+    const unfinishedTodos = allTodos - completedTodos
+
+    const todoFilter = todoList.find('[data-test="todo-filter"]')
+
+    const filterAll = todoFilter.find('[value="all"]')
+    const filterCompleted = todoFilter.find('[value="completed"]')
+    const filterUnfinished = todoFilter.find('[value="unfinished"]')
+
+    await filterCompleted.trigger('change')
+    let updatedTodos = todoList.findAll('[data-test="todo-item"]').length
+    expect(updatedTodos).toBe(completedTodos)
+
+    await filterUnfinished.trigger('change')
+    updatedTodos = todoList.findAll('[data-test="todo-item"]').length
+    expect(updatedTodos).toBe(unfinishedTodos)
+
+    await filterAll.trigger('change')
+    updatedTodos = todoList.findAll('[data-test="todo-item"]').length
+    expect(updatedTodos).toBe(allTodos)
+
+    console.log(updatedTodos)
   })
 })
