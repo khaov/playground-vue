@@ -1,4 +1,4 @@
-export interface Navigation {
-  id: string
-  title: string
+export interface User {
+  id: number
+  name: string
 }
