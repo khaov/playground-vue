@@ -1,3 +1,5 @@
 <template>
-  Описание {{ $route.params.id }}
+  <div>
+    Описание {{ $route.params.id }}
+  </div>
 </template>
