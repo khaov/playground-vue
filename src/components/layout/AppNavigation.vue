@@ -1,8 +1,8 @@
 <script setup lang="ts">
   const navigation = [
     {
-      id: '1',
-      title: 'Задача 1',
+      id: 'users-list',
+      title: 'Список пользователей',
     },
     {
       id: '2',
