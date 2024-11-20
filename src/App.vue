@@ -7,7 +7,7 @@ import AppFooter from '@/components/layout/AppFooter.vue'
 
 <template>
   <AppHeader />
-  <AppNavigation/>
-  <AppContent/>
+  <AppNavigation />
+  <AppContent />
   <AppFooter />
 </template>
