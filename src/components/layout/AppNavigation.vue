@@ -37,4 +37,3 @@
     </nav>
   </aside>
 </template>
-  
